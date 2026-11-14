@@ -144,7 +144,7 @@ export class Traffic {
       if (c.along < -limit) c.along = limit;
 
       if (c.horizontal) {
-        c.group.position.set(c.along, 0, c.road + c.dir * LANE);
+        c.group.position.set(c.along + 30, 0, c.road + c.dir * LANE);
         c.group.rotation.y = c.dir > 0 ? Math.PI / 2 : -Math.PI / 2;
       } else {
         c.group.position.set(c.road + c.dir * LANE, 0, c.along);
