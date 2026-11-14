@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Night Drive — an open world made by AI</title>
+    <meta name="description" content="An open-world neon car game in the browser. Built with three.js and AI." />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="scene"></canvas>
+
+      <!-- ===== HUD ===== -->
+      <div id="hud" class="hidden">
+        <div class="hud-corner top-left">
+          <div class="stat">
+            <span class="label">NEON CORES</span>
+            <span class="value"><b id="core-count">0</b><i>/40</i></span>
+          </div>
+          <div class="stat small">
+            <span class="label">TIME</span>
+            <span class="value mono" id="time-value">0:00.00</span>
+          </div>
+        </div>
+
+        <div class="hud-corner top-right">
+          <canvas id="minimap" width="176" height="176"></canvas>
+          <div class="stat small right">
+            <span class="label">DRIFT SCORE</span>
+            <span class="value mono" id="drift-score">0</span>
+          </div>
+        </div>
+
+        <div class="hud-corner bottom-right">
+          <div class="speedo">
+            <svg viewBox="0 0 120 120" class="gauge">
+              <circle cx="60" cy="60" r="52" class="gauge-track" />
+              <circle id="speed-arc" cx="60" cy="60" r="52" class="gauge-fill" />
+            </svg>
+            <div class="speedo-read">
+              <b id="speed-value">0</b>
+              <span>KM/H</span>
+              <em id="gear-value">N</em>
+            </div>
+          </div>
+          <div class="bars">
+            <div class="bar">
+              <span class="label">BOOST</span>
+              <div class="track"><div id="boost-fill" class="fill boost"></div></div>
+            </div>
+            <div class="bar">
+              <span class="label">DRIFT</span>
+              <div class="track"><div id="drift-fill" class="fill drift"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="callout" class="callout"></div>
+        <div id="drift-pop" class="drift-pop"></div>
+        <div class="hint">
+          <kbd>WASD</kbd> drive · <kbd>SPACE</kbd> drift · <kbd>SHIFT</kbd> boost · <kbd>C</kbd> camera · <kbd>R</kbd> reset · <kbd>M</kbd> mute
+        </div>
+      </div>
+
+      <!-- ===== Mobile controls ===== -->
+      <div id="touch" class="hidden">
+        <div class="pad left">
+          <button class="tbtn" data-key="left">◀</button>
+          <button class="tbtn" data-key="right">▶</button>
+        </div>
+        <div class="pad right">
+          <button class="tbtn wide" data-key="brake">BRAKE</button>
+          <button class="tbtn" data-key="drift">DRIFT</button>
+          <button class="tbtn accent" data-key="gas">GAS</button>
+        </div>
+      </div>
+
+      <!-- ===== Start / end screens ===== -->
+      <div id="overlay" class="overlay">
+        <div class="panel">
+          <p class="eyebrow">three.js · zero hand-written assets</p>
+          <h1>NIGHT<span>DRIVE</span></h1>
+          <p class="tagline">
+            An open-world neon city, built end to end by an AI agent — procedural streets,
+            arcade drift physics, synth engine audio, and a 40-core scavenger hunt.
+          </p>
+          <button id="start-btn" class="cta">START ENGINE</button>
+          <button id="guide-btn" class="link">How people build car games like this with AI →</button>
+          <div class="keys">
+            <div><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd><span>drive</span></div>
+            <div><kbd>Space</kbd><span>handbrake drift</span></div>
+            <div><kbd>Shift</kbd><span>boost</span></div>
+            <div><kbd>C</kbd><span>camera</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="guide" class="overlay hidden">
+        <div class="panel guide-panel">
+          <p class="eyebrow">the making of</p>
+          <h2>How people make <em>awesome</em> car games with AI</h2>
+          <div class="guide-scroll">
+            <p>
+              This whole game is a demo of the 2026 workflow: a coding agent (three.js + Vite) builds the
+              world, the car, the physics and the HUD from prose, while generative tools fill in art and sound.
+              The full write-up lives in <code>docs/MAKING-AN-AI-CAR-GAME.md</code> in this repo.
+            </p>
+            <ol>
+              <li><b>Prompt-to-playable</b> — Rosebud AI, Astrocade, Cinevva, or a plain Claude/ChatGPT canvas turn one paragraph into a playable build.</li>
+              <li><b>Prompt-to-code</b> — Cursor / Claude Code / this agent iterate on a real three.js repo so you own the source.</li>
+              <li><b>Generative assets</b> — Meshy, Tripo and Rodin make GLB cars; Scenario and Layer do textures and skyboxes; ElevenLabs and Suno do voice and music.</li>
+              <li><b>Game feel</b> — the part AI still needs you for: tune grip, camera lag, bloom, FOV kick until it feels fast.</li>
+              <li><b>Ship</b> — one `vite build`, push to GitHub Pages / Vercel, and share the link.</li>
+            </ol>
+          </div>
+        </div>
+        <button id="guide-close" class="cta ghost">BACK</button>
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
