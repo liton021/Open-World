@@ -22,6 +22,10 @@ principles it inherits:
 
 The last point is the whole design, and it is enforced by a test.
 
+## Play it
+
+**[nice-try-tau.vercel.app](https://nice-try-tau.vercel.app)**
+
 ## Run it
 
 ```bash
@@ -30,6 +34,21 @@ npm run dev          # http://localhost:3000
 npm run check:levels # verify all levels are beatable and fair
 npm run build
 ```
+
+## Deploying
+
+Hosted on Vercel as project `nice-try`. Pushes to `main` can be deployed from
+the git repo:
+
+```bash
+# deploy the current state of main
+vercel deploy --prod
+```
+
+Note: the Vercel GitHub integration is authorised as a different account
+(`onelitonbd`) than the repo owner (`liton021`), so automatic push-to-deploy is
+not wired up. Until that's connected, deploy by triggering a git deployment of
+`main` (that's how the live build was made — commit `5973d11`).
 
 ## Controls
 
