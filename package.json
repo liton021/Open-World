@@ -1,0 +1,23 @@
+{
+  "name": "nice-try",
+  "version": "0.1.0",
+  "private": true,
+  "description": "NICE TRY \u2014 a completely fair platformer.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "check:levels": "tsc game/constants.ts game/types.ts game/levels.ts game/engine.ts scripts/check-levels.ts --outDir .check --module commonjs --target ES2022 --moduleResolution node --skipLibCheck --esModuleInterop && node .check/scripts/check-levels.js"
+  },
+  "dependencies": {
+    "next": "16.4.6",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "typescript": "^5"
+  }
+}
